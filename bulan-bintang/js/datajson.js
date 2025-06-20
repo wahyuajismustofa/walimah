@@ -237,7 +237,7 @@ function initAttendanceToggle() {
 function getSelectedEvents() {
   const eventCheckboxes = document.querySelectorAll('input[name="selected_event[]"]:checked');
   const values = Array.from(eventCheckboxes).map(cb => cb.value);
-  return values.length > 0 ? values.join(", ").replace(/\s+/g, "_") : "Tidak_memilih_acara";
+  return values.length > 0 ? encodeCustom(values.join(", ")) : "Tidak_memilih_acara";
 }
 
 
