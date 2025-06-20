@@ -259,9 +259,9 @@ function initGiftFormHandler() {
 async function handleFormGift(event) {
   event.preventDefault();
   const form = document.getElementById("weddingGiftForm");
-  const akun = form.querySelector('[name="nama-akun"]').value.trim();
-  const pesan = form.querySelector('[name="pesan"]').value.trim().replace(/ /g, "_").replace(/,/g, "--koma--");
-  const nominal = form.querySelector('[name="nominal"]').value.trim();
+  const akun = encodeCustom(form.querySelector('[name="nama-akun"]').value);
+  const pesan = encodeCustom(form.querySelector('[name="pesan"]').value);
+  const nominal = encodeCustom(form.querySelector('[name="nominal"]').value);
   if (!akun || !pesan || !nominal) return alert("Silakan lengkapi data kado");
 
   try {
@@ -320,10 +320,7 @@ function getComment() {
   const komentar = document.querySelector('textarea[name="comment"]');
   if (!komentar) return null;
 
-  return komentar.value
-    .trim()
-    .replace(/,/g, "--koma--")
-    .replace(/ /g, "_");
+  return encodeCustom(komentar.value);
 }
 
 
@@ -432,5 +429,13 @@ function closeAlert() {
     alertBox._timeoutId = null;
   }
 }
+
+// tools
+function encodeCustom(text) {
+  return text
+    .replace(/ /g, "_")
+    .replace(/,/g, "--koma--");
+}
+
 
 init();
