@@ -5,8 +5,8 @@ function getParam(variabel) {
 }
 // variabel global
 const idTamu = getParam("id");
-const SCRIPT_BASE_URL = "https://script.google.com/macros/s/AKfycbxhUt_yV_55aSsxlh_d7bHYz8lXzrtDR6C_Bopqk_jg0COTshjbMAXQbB8ynIDrUV9U/exec";
-const DATABASE_NAME = "test-undangan-web";
+const SCRIPT_BASE_URL = "https://script.google.com/macros/s/AKfycbyXiXcUvfr9EQVKDk-jyiTbnFpJIisLy-Neamj7EN0qFJPh5Clbj3E2v86RR6qbFj0A/exec";
+const DATABASE_NAME = "bulan-bintang";
 let data_update;
 
 async function init() {
