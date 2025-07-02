@@ -13,6 +13,13 @@
       "pesan": "Cek",
       "kehadiran": "",
       "acara": ""
+    },
+    {
+      "nama": "Wahyu Ajis",
+      "waktu-pesan": "",
+      "pesan": "",
+      "kehadiran": "Tidak Hadir",
+      "acara": "Tidak memilih acara"
     }
   ]
 }
