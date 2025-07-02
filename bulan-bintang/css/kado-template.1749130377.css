@@ -182,7 +182,7 @@ button.wedding-gift-confirm-btn {
   color: #fff;
 }
 
-.kat__cropper-modal.kado {
+.kat_cropper-modal.kado {
   background-color: #fff;
   width: 100%;
   max-width: 425px;
@@ -203,7 +203,7 @@ button.wedding-gift-confirm-btn {
 }
 
 
-.kat__cropper-modal.kado span, .kat__cropper-modal.kado p {
+.kat_cropper-modal.kado span, .kat_cropper-modal.kado p {
   font-family: var(--roboto);
   
 }

@@ -486,7 +486,7 @@ var tab_content_toggle = function(e) {
 }
 
 // Animate CSS
-var animateCSS = function(element, animation, speed = '', prefix = 'animate__') {
+var animateCSS = function(element, animation, speed = '', prefix = 'animate_') {
     // We create a Promise and return it
     return new Promise((resolve, reject) => {
         const animationInit = `${prefix}animated`;

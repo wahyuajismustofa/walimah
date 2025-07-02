@@ -4699,7 +4699,7 @@ button[disabled]:hover,
 }
 
 @media only screen and (max-width: 669px) {
-    .voucher__promo.active + .wa-chat-widget .wa-chat-send {
+    .voucher_promo.active + .wa-chat-widget .wa-chat-send {
         bottom: 120px;
     }
 }
@@ -4742,7 +4742,7 @@ button[disabled]:hover,
 
 @media only screen and (max-width: 669px) {
 
-    .voucher__promo.active + .wa-chat-widget .wa-chat-box {
+    .voucher_promo.active + .wa-chat-widget .wa-chat-box {
         bottom: 120px;
     }
 
@@ -5469,15 +5469,15 @@ div.blob.blob-green {
 /* =======================================================
     GUEST CARD
 ======================================================= */
-body.ei__body * { 
+body.ei_body * { 
     padding:0;
     margin:0;
 }
-body.ei__body *::after,
-body.ei__body *::before { 
+body.ei_body *::after,
+body.ei_body *::before { 
     box-sizing:border-box;
 }
-body.ei__body {
+body.ei_body {
     width: 480px;
     height: 720px;
     overflow: hidden;
@@ -5697,7 +5697,7 @@ body.ei__body {
 /* =======================================================
     QR CARD
 ======================================================= */
-.qrcard__item {
+.qrcard_item {
     background: linear-gradient(
                     130deg, 
                     #e0bf8c 30%,
@@ -5709,17 +5709,17 @@ body.ei__body {
     padding: 10px;
 }
 /* header */
-.qrcard__item .qrcard__header {
+.qrcard_item .qrcard_header {
     text-align: center;
 }
-.qrcard__item .qrcard__header .qrcard__title {
+.qrcard_item .qrcard_header .qrcard_title {
     text-transform: uppercase;
     font-size: 17px;
     font-weight: 700;
     color: #fff;
 }
 /* preview */
-.qrcard__item .qrcard__preview {
+.qrcard_item .qrcard_preview {
     background-color: #fff;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
     border-radius: 12px;
@@ -5727,7 +5727,7 @@ body.ei__body {
     margin: 10px auto;
     text-align: center;
 }
-.qrcard__item .qrcard__preview .qrcard__picture {
+.qrcard_item .qrcard_preview .qrcard_picture {
     display: block;
     margin: 0 auto;
     width: 180px;
@@ -5735,16 +5735,16 @@ body.ei__body {
     object-fit: contain;
     object-position: center;
 }
-.qrcard__item .qrcard__preview .qrcard__code,
-.qrcard__item .qrcard__preview .qrcard__name {    
+.qrcard_item .qrcard_preview .qrcard_code,
+.qrcard_item .qrcard_preview .qrcard_name {    
     font-weight: 700;
     color: #000;
 }
-.qrcard__item .qrcard__preview .qrcard__code {
+.qrcard_item .qrcard_preview .qrcard_code {
     margin-top: 2px;
     font-size: 15px;
 }
-.qrcard__item .qrcard__preview .qrcard__name {
+.qrcard_item .qrcard_preview .qrcard_name {
     font-size: 14px;
     margin-bottom: 2px;
     white-space: nowrap;
@@ -5754,24 +5754,24 @@ body.ei__body {
     overflow: hidden;
 }
 /* caption */
-.qrcard__item .qrcard__caption {
+.qrcard_item .qrcard_caption {
     text-align: left;
     padding: 0 7px;
 }
-.qrcard__item .qrcard__caption p {
+.qrcard_item .qrcard_caption p {
     margin-bottom: 7px;
     font-size: 9px;
     font-weight: 400;
     color: #fff;
     word-wrap: break-word;
 }
-.qrcard__item .qrcard__caption p:last-of-type {
+.qrcard_item .qrcard_caption p:last-of-type {
     margin-bottom: 0;
 }
-.qrcard__item .qrcard__caption .qrcard__text {
+.qrcard_item .qrcard_caption .qrcard_text {
     /* font-size: 9px; */
 }
-.qrcard__item .qrcard__caption .qrcard__link {
+.qrcard_item .qrcard_caption .qrcard_link {
     font-weight: 700;
 }
 
@@ -5780,14 +5780,14 @@ body.ei__body {
 /* =======================================================
         CONTACT
 ======================================================= */
-.body__contact::-webkit-scrollbar {
+.body_contact::-webkit-scrollbar {
     width: 10px;
     height: 10px;
 }
-.body__contact::-webkit-scrollbar-track {
+.body_contact::-webkit-scrollbar-track {
     background: #fafafa;
 }
-.body__contact::-webkit-scrollbar-thumb {
+.body_contact::-webkit-scrollbar-thumb {
     background-color: #e92f5a;
     border-radius: 20px;
     border: 2px solid #fafafa;
@@ -6557,7 +6557,7 @@ body.ei__body {
 /* =======================================================
     VOUCHER PROMO
 ======================================================= */
-.voucher__promo {
+.voucher_promo {
     position: fixed;
     z-index: 999999;
     /* height: 0; */
@@ -6570,7 +6570,7 @@ body.ei__body {
     box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.2);
     transition: all 0.35s ease-in-out;
 }
-.voucher__promo.active {
+.voucher_promo.active {
     /* height: auto; */
     opacity: 1;
     visibility: visible;
@@ -6578,7 +6578,7 @@ body.ei__body {
 }
 
 /* Close Voucher Button */
-.close__voucher-button {
+.close_voucher-button {
     background: transparent;
     padding: 0;
     margin: 0;
@@ -6596,7 +6596,7 @@ body.ei__body {
 }
 
 /* Voucher Inner */
-.voucher__promo .voucher__inner {
+.voucher_promo .voucher_inner {
     /* background-color: olive; */
     width: 100%;
     max-width: 600px;
@@ -6609,52 +6609,52 @@ body.ei__body {
 }
 
 /* Voucher Details */
-.voucher__promo .voucher__inner .voucher__details {
+.voucher_promo .voucher_inner .voucher_details {
     padding: 10px;
 }
-.voucher__promo .voucher__inner .voucher__details p strong {
+.voucher_promo .voucher_inner .voucher_details p strong {
     font-size: 14px;
     font-weight: 700;
     color: #fff;
 }
-.voucher__promo .voucher__inner .voucher__details .voucher__title {
+.voucher_promo .voucher_inner .voucher_details .voucher_title {
     color: #fee287;
     font-size: 27px;
     line-height: 1;
     margin: 7px 0;
 }
-.voucher__promo .voucher__inner .voucher__details small {
+.voucher_promo .voucher_inner .voucher_details small {
     display: block;
     margin: 0;
     font-size: 11px;
     color: #fff;
 }
-.voucher__promo .voucher__inner .voucher__details small .voucher__code {
+.voucher_promo .voucher_inner .voucher_details small .voucher_code {
     font-size: 12px;
     font-weight: 700;
     color: #fee287;
 }
 
 /* Voucher Claim */
-.voucher__promo .voucher__inner .voucher__claim {
+.voucher_promo .voucher_inner .voucher_claim {
     padding: 10px;
     text-align: center;
 }
-.voucher__promo .voucher__inner .voucher__claim > p {
+.voucher_promo .voucher_inner .voucher_claim > p {
     font-size: 11px;
     line-height: 1;
     color: #fff;
 }
-.voucher__promo .voucher__inner .voucher__claim .voucher__countdown {
+.voucher_promo .voucher_inner .voucher_claim .voucher_countdown {
     margin: 2px 0;
     display: flex;
     justify-content: center;
 }
-.voucher__promo .voucher__inner .voucher__claim .voucher__countdown > div {
+.voucher_promo .voucher_inner .voucher_claim .voucher_countdown > div {
     margin: 5px 4px;
     text-align: center;
 }
-.voucher__promo .voucher__inner .voucher__claim .voucher__countdown > div h3 {
+.voucher_promo .voucher_inner .voucher_claim .voucher_countdown > div h3 {
     background: #fff;
     border-radius: 7px;
     font-weight: 400;
@@ -6668,12 +6668,12 @@ body.ei__body {
     align-items: center;
     justify-content: center;
 }
-.voucher__promo .voucher__inner .voucher__claim .voucher__countdown > div small {
+.voucher_promo .voucher_inner .voucher_claim .voucher_countdown > div small {
     display: block;
     font-size: 10px;
     color: #fff;
 }
-.voucher__promo .voucher__inner .voucher__claim .claim__voucher-button {
+.voucher_promo .voucher_inner .voucher_claim .claim_voucher-button {
     background: #fff;
     outline: none;
     border: 2px solid #fee287;
@@ -6688,13 +6688,13 @@ body.ei__body {
     cursor: pointer;
     transition: background 0.25s ease-in-out;
 }
-.voucher__promo .voucher__inner .voucher__claim .claim__voucher-button:hover {
+.voucher_promo .voucher_inner .voucher_claim .claim_voucher-button:hover {
     background: #fee287;
 }
 
 @media only screen and (min-width: 770px) {
 
-    .voucher__promo {
+    .voucher_promo {
         display: none;
     }
 
@@ -6702,13 +6702,13 @@ body.ei__body {
 
 @media only screen and (max-width: 350px) {
 
-    .voucher__promo .voucher__inner {
+    .voucher_promo .voucher_inner {
         flex-direction: column;
     }
-    .voucher__promo .voucher__inner .voucher__details {
+    .voucher_promo .voucher_inner .voucher_details {
         width: 100%;
     }
-    .voucher__promo .voucher__inner .voucher__claim {
+    .voucher_promo .voucher_inner .voucher_claim {
         width: 100%;
     }
 

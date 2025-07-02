@@ -233,18 +233,18 @@ textarea::-webkit-scrollbar-thumb,
 /* ============================================
     SIDE TO SIDE
 ============================================ */
-.kat-page__side-to-side {
+.kat-page_side-to-side {
     min-height: 480px;
     display: block;
     position: relative;
     height: 100%;
 }
-.kat-page__side-to-side,
-.kat-page__side-to-side * {
+.kat-page_side-to-side,
+.kat-page_side-to-side * {
     -webkit-overflow-scrolling: touch;
 }
 
-.kat-page__side-to-side .primary-pane {
+.kat-page_side-to-side .primary-pane {
     overflow: hidden;
     top: 0;
     left: 0;
@@ -256,14 +256,14 @@ textarea::-webkit-scrollbar-thumb,
     flex-direction: column;
 }
 
-.kat-page__side-to-side .secondary-pane {
+.kat-page_side-to-side .secondary-pane {
     position: relative;
     right: 0;
     width: 39%;
     margin-left: auto;
     background-color: var(--background-primary);
 }
-.kat-page__side-to-side .secondary-pane::before {
+.kat-page_side-to-side .secondary-pane::before {
     content: '';
     position: absolute;
     top: 0;
@@ -278,12 +278,12 @@ textarea::-webkit-scrollbar-thumb,
 }
 
 @media only screen and (max-width: 960px) {
-    .kat-page__side-to-side .primary-pane {
+    .kat-page_side-to-side .primary-pane {
         position: relative;
         width: 100%;
         display: none;
     }
-    .kat-page__side-to-side .secondary-pane {
+    .kat-page_side-to-side .secondary-pane {
         position: relative;
         width: 100%;
     }
@@ -292,7 +292,7 @@ textarea::-webkit-scrollbar-thumb,
 /* ============================================
     SIDE TO SIDE => PRIMARY PANE
 ============================================ */
-.kat-page__side-to-side .primary-pane .inner {
+.kat-page_side-to-side .primary-pane .inner {
     top: 0;
     left: 0;
     right: 0;
@@ -306,7 +306,7 @@ textarea::-webkit-scrollbar-thumb,
     position: absolute;
 }
 
-.kat-page__side-to-side .primary-pane .inner .primary-pane-content {
+.kat-page_side-to-side .primary-pane .inner .primary-pane-content {
     position: relative;
     width: 100%;
     height: 100%;
@@ -892,26 +892,26 @@ section.love-story .story-inner {
 }
 
 /* preview */
-.story__slider-preview {
+.story_slider-preview {
     margin-bottom: 5%;
 }
-.story__slider-preview .slick-list {
+.story_slider-preview .slick-list {
     overflow: visible;
 }
-.story__slider-caption-wrap .slick-list {
+.story_slider-caption-wrap .slick-list {
     overflow: visible;
 }
 
 
 /* caption wrap */
-.story__slider-caption-wrap {
+.story_slider-caption-wrap {
     position: relative;
     /* margin-bottom: 16px; */
     /* padding: 16px 0px; */
 }
 
 /* caption */
-.story__slider-caption {
+.story_slider-caption {
 
 }
 
@@ -921,19 +921,19 @@ section.love-story .story-inner {
 }
 
 /* dots */
-.story__slider-dots {
+.story_slider-dots {
     display: flex;
     justify-content: center;
     margin-top: 16px;
 }
-.story__slider-dots > ul {
+.story_slider-dots > ul {
     display: flex;
     align-items: center;
     gap: 8px;
 }
-.story__slider-dots > ul > li {
+.story_slider-dots > ul > li {
 }
-.story__slider-dots > ul > li > button {
+.story_slider-dots > ul > li > button {
     display: block;
     border: none;
     outline: none;
@@ -949,13 +949,13 @@ section.love-story .story-inner {
     border: var(--text-primary) solid 1px;
 
 }
-.story__slider-dots > ul > li.slick-active > button {
+.story_slider-dots > ul > li.slick-active > button {
     background: var(--button-background-primary);
 }
 
 /* story preview */
 .story-body .story-preview {
-    display: flex;
+    display: flex !important;
     flex-direction: column;
     align-items: center;
     gap: 16px;
@@ -2572,7 +2572,7 @@ section.video-gallery .inner .video-outer .video-inner > .title > p {
 }
 .wedding-gift-select-bank-wrap
 .selectize-control.form-control
-.select-bank__title {
+.select-bank_title {
     font-family: var(--body-text-family);
     color: var(--button-text-primary);
 }
@@ -2587,12 +2587,12 @@ section.video-gallery .inner .video-outer .video-inner > .title > p {
 }
 .wedding-gift-select-bank-wrap
 .selectize-dropdown.form-control
-.select-bank__title {
+.select-bank_title {
     color: var(--button-text-primary);
 }
 .wedding-gift-select-bank-wrap
 .selectize-dropdown.form-control
-.select-bank__credential {
+.select-bank_credential {
     font-size: calc(var(--body-text-size) - var(--fs-extra-3));
     color: var(--button-text-primary);
 }
@@ -2607,11 +2607,11 @@ section.video-gallery .inner .video-outer .video-inner > .title > p {
 .wedding-gift-select-bank-wrap
 .selectize-dropdown.form-control
 .item:hover
-.select-bank__title,
+.select-bank_title,
 .wedding-gift-select-bank-wrap
 .selectize-dropdown.form-control
 .item:hover
-.select-bank__credential {
+.select-bank_credential {
     color: var(--button-text-secondary);
 }
 
@@ -3166,9 +3166,9 @@ section.video-gallery .inner .video-outer .video-inner > .title > p {
 }
 
 /* MODAL KADO */
-.kat__cropper-modal.kado {
+.kat_cropper-modal.kado {
 }
-.kat__cropper-modal.kado .modal-kado-header {
+.kat_cropper-modal.kado .modal-kado-header {
     display: flex;
     justify-content: space-between;
 }
@@ -3177,8 +3177,8 @@ section.video-gallery .inner .video-outer .video-inner > .title > p {
     font-size: var(--body-text-size);
     color: var(--text-primary);
 }
-.kat__cropper-modal.kado span,
-.kat__cropper-modal.kado p {
+.kat_cropper-modal.kado span,
+.kat_cropper-modal.kado p {
     font-family: var(--body-text-family);
     font-size: var(--body-text-size);
     color: var(--text-tertiary);
@@ -3743,8 +3743,8 @@ section.protocol-04 .protocol-item-wrap .protocol-item .text-wrap .text {
 /* Comment Wrap */
 .comment-wrap {
     display: block;
-    height: 70vh;
-    overflow: scroll;
+    height: auto;
+    /* overflow: scroll; */
 }
 .comment-item {
     margin-bottom: 24px;

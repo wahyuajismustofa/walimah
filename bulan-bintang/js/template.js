@@ -644,28 +644,28 @@ $(document).on('change', 'input#weddingGiftPicture', wgu_handle_picture);
 var wedding_gift_next = function(e) {
     e.preventDefault();
     var width = $('#weddingGiftForm').width();
-    var marginLeft = parseFloat($('.wedding-gift__first-slide').css('margin-left'));
+    var marginLeft = parseFloat($('.wedding-gift_first-slide').css('margin-left'));
 
     var newMarginLeft = marginLeft - width;
 
-    $('.wedding-gift__first-slide').css('margin-left', newMarginLeft + "px");
+    $('.wedding-gift_first-slide').css('margin-left', newMarginLeft + "px");
 }
 
-$(document).on('click', '.wedding-gift__next', wedding_gift_next);
+$(document).on('click', '.wedding-gift_next', wedding_gift_next);
 
 // Wedding Gift Prev
 var weeding_gift_prev = function(e) {
     e.preventDefault();
     var width = $('#weddingGiftForm').width();
-    var marginLeft = parseFloat($('.wedding-gift__first-slide').css('margin-left'));
+    var marginLeft = parseFloat($('.wedding-gift_first-slide').css('margin-left'));
 
     var newMarginLeft = marginLeft + width;
     if (newMarginLeft < 0) newMarginLeft = 0;
 
-    $('.wedding-gift__first-slide').css('margin-left', newMarginLeft + "px");        
+    $('.wedding-gift_first-slide').css('margin-left', newMarginLeft + "px");        
 }
 
-$(document).on('click', '.wedding-gift__prev', weeding_gift_prev);        
+$(document).on('click', '.wedding-gift_prev', weeding_gift_prev);        
 
 
 // Wedding Gift Form
@@ -728,14 +728,14 @@ var init_wedding_gift = function() {
                             render: {
                                 item: function(item, escape) {
                                     var title = item.title;
-                                    return '<div>' + (title ? '<p class="select-bank__title">' + escape(title) + '</p>' : '') + '</div>';
+                                    return '<div>' + (title ? '<p class="select-bank_title">' + escape(title) + '</p>' : '') + '</div>';
                                 },
                                 option: function(item, escape) {
                                     var title = item.title;
                                     var credential = item.credential;                        
                                     return '<div class="item">' +
-                                                '<p class="select-bank__title">' + escape(title) + '</p>' +
-                                                '<p class="select-bank__credential">' + escape(credential) + '</p>' +
+                                                '<p class="select-bank_title">' + escape(title) + '</p>' +
+                                                '<p class="select-bank_credential">' + escape(credential) + '</p>' +
                                             '</div>';
                                 }
                             },
@@ -1427,19 +1427,19 @@ $(function() {
 ============================== */
 // SLIDER SYNCING
 function startSliderSyncing() {
-    if ($('.slider-syncing__preview').length && $('.slider-syncing__nav').length) {
+    if ($('.slider-syncing_preview').length && $('.slider-syncing_nav').length) {
 
         var sliderSyncingPreviewOptions = {
                 slidesToShow: 1,
                 slidesToScroll: 1,
                 arrows: false,
                 fade: true,
-                asNavFor: '.slider-syncing__nav'
+                asNavFor: '.slider-syncing_nav'
             }
         var sliderSyncingNavOptions = {
                 slidesToShow: 1,
                 slidesToScroll: 1,
-                asNavFor: '.slider-syncing__preview',
+                asNavFor: '.slider-syncing_preview',
                 arrows: false,
                 dots: false,
                 centerMode: true,
@@ -1449,8 +1449,8 @@ function startSliderSyncing() {
                 infinite: true,
             }
 
-        var sliderSyncingPreview = $('.slider-syncing__preview');
-        var sliderSyncingNav = $('.slider-syncing__nav');
+        var sliderSyncingPreview = $('.slider-syncing_preview');
+        var sliderSyncingNav = $('.slider-syncing_nav');
 
         if ($(sliderSyncingPreview).hasClass('slick-initialized')) $(sliderSyncingPreview).slick('unslick');
         if ($(sliderSyncingNav).hasClass('slick-initialized')) $(sliderSyncingNav).slick('unslick');
@@ -1561,8 +1561,8 @@ function galleryKatModern() {
         var galleryModern = $('#katGalleryModern');
         if (galleryModern.length) { 
 
-            var imgWrap = $(galleryModern).find('.modern__img-wrap').get(0);
-            var modernList = $(galleryModern).find('.modern__list').children();        
+            var imgWrap = $(galleryModern).find('.modern_img-wrap').get(0);
+            var modernList = $(galleryModern).find('.modern_list').children();        
             var modulus = modernList.length % 3;
 
             // Modern List
@@ -2126,7 +2126,7 @@ var func_kado_init = function () {
         var onSuccess = function (res) {
             if (res.modal !== '') {
                 openModal(res.modal);
-                var KadoModal = $('.kat__cropper-modal.kado.modal-details');
+                var KadoModal = $('.kat_cropper-modal.kado.modal-details');
 
                 var currency = KadoModal.find('.price-field').attr('data-currency') || 'Rp';
                 var formatPrice = currency + ' ' + parseFloat(KadoPrice).toLocaleString('id-ID');
@@ -2165,7 +2165,7 @@ var func_kado_init = function () {
     }
     
     function showConfirmModal(returnKadoID, returnKadoImg, returnKadoName, returnKadoSisa) {
-        if ($('.kat__cropper-modal.kado.modal-confirm').length > 0) {
+        if ($('.kat_cropper-modal.kado.modal-confirm').length > 0) {
             return;
         }
     
@@ -2174,7 +2174,7 @@ var func_kado_init = function () {
             if (res.modal !== '') {
                 openModal(res.modal);
     
-                var ConfirmModal = $('.kat__cropper-modal.kado.modal-confirm');
+                var ConfirmModal = $('.kat_cropper-modal.kado.modal-confirm');
                 ConfirmModal.find('[name="kado_id"]').val(returnKadoID);
                 ConfirmModal.find('.img-confirm').attr('src', returnKadoImg);
                 ConfirmModal.find('.img-caption').text(returnKadoName);

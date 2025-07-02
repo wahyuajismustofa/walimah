@@ -18,8 +18,8 @@ var storySlider = function () {
     var storyPreviewOptions = {
         ...options,
         ...{
-        appendDots: "#story__slider-dots",
-        asNavFor: "#story__slider-caption",
+        appendDots: "#story_slider-dots",
+        asNavFor: "#story_slider-caption",
         },
     };
 
@@ -28,7 +28,7 @@ var storySlider = function () {
         ...{
             dots: false,
             adaptiveHeight: false,
-            asNavFor: "#story__slider-preview",
+            asNavFor: "#story_slider-preview",
             adaptiveHeight: false,
             arrows: true,
             prevArrow: '.story--button.prev',
@@ -37,9 +37,9 @@ var storySlider = function () {
     };
 
     // init slick
-    $("#story__slider-preview").slick(storyPreviewOptions);
+    $("#story_slider-preview").slick(storyPreviewOptions);
 
-    $("#story__slider-caption").slick(storyCaptionOptions);
+    $("#story_slider-caption").slick(storyCaptionOptions);
 };
 
 // Gallery Single Slider
@@ -85,7 +85,7 @@ var photo_slider_options = {
 };
 
 var resize_story_nav = function() {
-    var $nav = $('.story__slider-preview')
+    var $nav = $('.story_slider-preview')
 
     // width
     var width = $nav.width() || 1;
@@ -106,7 +106,7 @@ var resize_story_nav = function() {
 }
 
 var resize_storyCaption_nav = function() {
-    var $nav = $('.story__slider-caption')
+    var $nav = $('.story_slider-caption')
 
     // width
     var width = $nav.width() || 1;
@@ -146,11 +146,8 @@ var resize_photo_nav = function() {
 // On Ready
 $(document).ready(function () {
     storySlider();
-    
     resize_story_nav();
-
     resize_storyCaption_nav();
-    
     resize_photo_nav();
 
     var kadoWrapper = $('.kado-wrapper');
