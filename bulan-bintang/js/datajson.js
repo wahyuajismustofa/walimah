@@ -1,19 +1,22 @@
 //params
 function getParam(variabel) {
   const params = new URLSearchParams(window.location.search);
-  return params.get(variabel);
+  const nilai = params.get(variabel);
+  return nilai ? nilai.replace(/_/g, ' ') : null;
 }
+
 // variabel global
 const idTamu = getParam("id");
-const SCRIPT_BASE_URL = "https://script.google.com/macros/s/AKfycbyXiXcUvfr9EQVKDk-jyiTbnFpJIisLy-Neamj7EN0qFJPh5Clbj3E2v86RR6qbFj0A/exec";
-const DATABASE_NAME = "bulan-bintang";
+const namaTamu = getParam("to");
+const SCRIPT_BASE_URL = "https://script.google.com/macros/s/AKfycbyhaS-OswHKp5iR44zZjvPLvkj-Ob9Bn0iW_G1UAjKzsB3C5dWx4r8mqxqsj8WHvese1g/exec";
+const DATABASE_NAME = "bulan-bintang"; 
 let data_update;
 
 async function init() {
   const data = await getData('tamu');
   data_update = data.updated;
   if (data && Array.isArray(data.tamu)) {
-  gantiDataDariId(data.tamu);
+  gantiIsiClass("nama", namaTamu);
 	buatKomentarDariData();
   document.body.classList.remove("imp-hidden");
 	tampilkanRSVP();
@@ -47,29 +50,25 @@ async function updateData() {
 }
 
 
-function gantiDataDariId(dataTamu) {
-  if (isNaN(idTamu)) {
-    console.warn("ID tidak ditemukan di URL atau bukan angka.");
+function gantiIsiClass(className, nilaiBaru) {
+  const elemenList = document.querySelectorAll('.data-' + className);
+
+  if (elemenList.length === 0) {
+    console.warn(`Tidak ditemukan elemen dengan class '${className}'`);
     return;
   }
 
-  const tamu = dataTamu.find(item => item.id == idTamu);
-  if (!tamu) {
-    console.warn("Tamu dengan ID tersebut tidak ditemukan.");
-    return;
+  elemenList.forEach(el => {
+  if (typeof nilaiBaru === 'string' || typeof nilaiBaru === 'number') {
+    el.textContent = String(nilaiBaru);
+  } else {
+    console.warn('Nilai harus berupa string atau angka.');
   }
-
-  const semuaElemen = document.querySelectorAll('[class*="data-"]');
-  semuaElemen.forEach(el => {
-    const match = el.className.match(/data-([a-zA-Z0-9-_]+)/);
-    if (match) {
-      const key = match[1];
-      if (tamu[key]) {
-        el.textContent = tamu[key];
-      }
-    }
   });
+
 }
+
+
 // rsvp ---------------------------------------
 function buatFormRSVP() {
   return `
@@ -154,9 +153,9 @@ async function tampilkanRSVP() {
   const data = await getData("tamu");
   const container = document.getElementById("rsvpContainer");
 
-  if (!idTamu || !data.tamu || !container) return;
+  if (!namaTamu || !data.tamu || !container) return;
 
-  const tamu = data.tamu.find(item => item.id == idTamu);
+  const tamu = data.tamu.find(item => item.nama == namaTamu);
 	if (!tamu) return;
 
 	if (tamu.kehadiran === "Hadir") {
@@ -242,7 +241,7 @@ function getSelectedEvents() {
 
 
 function buildUrlRsvp(kehadiran, acara) {
-  const query = `UPDATE tamu SET kehadiran=${encodeURIComponent(kehadiran)},acara=${encodeURIComponent(acara)} WHERE id=${idTamu}`;
+  const query = `UPDATE tamu SET kehadiran=${encodeURIComponent(kehadiran)},acara=${encodeURIComponent(acara)} WHERE nama=${encodeCustom(namaTamu)}`;
   return `${SCRIPT_BASE_URL}?conn=DATABASE=${DATABASE_NAME}&data=${query}`;
 }
 // kado ---------------------------------------
@@ -280,7 +279,7 @@ async function handleFormGift(event) {
   }
 }
 function buildUrlGift(akun,pesan,nominal) {
-  const query = `UPDATE kado SET akun=${encodeURIComponent(akun)},pesan=${encodeURIComponent(pesan)},nominal=${encodeURIComponent(nominal)} WHERE id=${idTamu}`;
+  const query = `UPDATE kado SET akun=${encodeURIComponent(akun)},pesan=${encodeURIComponent(pesan)},nominal=${encodeURIComponent(nominal)} WHERE nama=${encodeCustom(namaTamu)}`;
   return `${SCRIPT_BASE_URL}?conn=DATABASE=${DATABASE_NAME}&data=${query}`;
 }
 // komentar -----------------------------------
@@ -335,7 +334,7 @@ function buildUrlComment(komentar) {
     String(now.getHours()).padStart(2, '0'),
     String(now.getMinutes()).padStart(2, '0')
   ].join(':');
-  const query = `UPDATE tamu SET waktu-pesan=${encodeURIComponent(waktu)},pesan=${encodeURIComponent(komentar)} WHERE id=${idTamu}`;
+  const query = `UPDATE tamu SET waktu-pesan=${encodeURIComponent(waktu)},pesan=${encodeURIComponent(komentar)} WHERE nama=${encodeCustom(namaTamu)}`;
   return `${SCRIPT_BASE_URL}?conn=DATABASE=${DATABASE_NAME}&data=${query}`;
 }
 
