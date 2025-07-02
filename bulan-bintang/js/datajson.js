@@ -6,7 +6,6 @@ function getParam(variabel) {
 }
 
 // variabel global
-const idTamu = getParam("id");
 const namaTamu = getParam("to");
 const SCRIPT_BASE_URL = "https://script.google.com/macros/s/AKfycbyhaS-OswHKp5iR44zZjvPLvkj-Ob9Bn0iW_G1UAjKzsB3C5dWx4r8mqxqsj8WHvese1g/exec";
 const DATABASE_NAME = "bulan-bintang"; 
@@ -156,7 +155,11 @@ async function tampilkanRSVP() {
   if (!namaTamu || !data.tamu || !container) return;
 
   const tamu = data.tamu.find(item => item.nama == namaTamu);
-	if (!tamu) return;
+  if (!tamu) {
+    container.innerHTML = buatFormRSVP();
+    initRSVPFormHandler();
+    return;
+  }
 
 	if (tamu.kehadiran === "Hadir") {
 	  container.innerHTML = buatPesanHadir();
