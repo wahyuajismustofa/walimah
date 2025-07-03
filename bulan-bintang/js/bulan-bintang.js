@@ -31,8 +31,8 @@ var storySlider = function () {
             asNavFor: "#story_slider-preview",
             adaptiveHeight: false,
             arrows: true,
-            prevArrow: '.story--button.prev',
-            nextArrow: '.story--button.next'
+            prevArrow: '.story-button.prev',
+            nextArrow: '.story-button.next'
         },
     };
 

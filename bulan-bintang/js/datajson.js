@@ -10,17 +10,18 @@ const namaTamu = getParam("to");
 const SCRIPT_BASE_URL = "https://script.google.com/macros/s/AKfycbyhaS-OswHKp5iR44zZjvPLvkj-Ob9Bn0iW_G1UAjKzsB3C5dWx4r8mqxqsj8WHvese1g/exec";
 const DATABASE_NAME = "bulan-bintang"; 
 let data_update;
+let data;
 
 async function init() {
-  const data = await getData('tamu');
+  data = await getData('tamu');
   data_update = data.updated;
   if (data && Array.isArray(data.tamu)) {
   gantiIsiClass("nama", namaTamu);
-	buatKomentarDariData();
+  buatKomentarDariData();
   document.body.classList.remove("imp-hidden");
-	tampilkanRSVP();
-	initGiftFormHandler();
-	initCommentFormHandler();
+  tampilkanRSVP();
+  initGiftFormHandler();
+  initCommentFormHandler();
   }
 }
 
@@ -149,7 +150,6 @@ function buatPesanTidakHadir() {
 }
 
 async function tampilkanRSVP() {
-  const data = await getData("tamu");
   const container = document.getElementById("rsvpContainer");
 
   if (!namaTamu || !data.tamu || !container) return;
@@ -161,15 +161,15 @@ async function tampilkanRSVP() {
     return;
   }
 
-	if (tamu.kehadiran === "Hadir") {
-	  container.innerHTML = buatPesanHadir();
-	} else if (tamu.kehadiran === "Tidak Hadir") {
-	  container.innerHTML = buatPesanTidakHadir();
-	} else {
-	  container.innerHTML = buatFormRSVP();
-	  initRSVPFormHandler();
-	}
-	
+  if (tamu.kehadiran === "Hadir") {
+    container.innerHTML = buatPesanHadir();
+  } else if (tamu.kehadiran === "Tidak Hadir") {
+    container.innerHTML = buatPesanTidakHadir();
+  } else {
+    container.innerHTML = buatFormRSVP();
+    initRSVPFormHandler();
+  }
+  
   container.addEventListener("click", function (e) {
   if (e.target && e.target.id === "changeRSVP") {
     container.innerHTML = buatFormRSVP();
@@ -200,16 +200,16 @@ async function handleFormRSVP(event) {
     const url = buildUrlRsvp(kehadiran, acara);
     const response = await fetch(url);
     const result = await response.json();
-	
-	if (result.status){
-		showAlert("success", "RSVP berhasil dikirim!");
+  
+  if (result.status){
+    showAlert("success", "RSVP berhasil dikirim!");
     setInterval(updateData, 5000); 
-	}else{
-		showAlert("error", result.error);
-	}
+  }else{
+    showAlert("error", result.error);
+  }
   } catch (err) {
     console.error("Gagal mengirim RSVP:", err);
-	showAlert("error", "Gagal mengirim data. Silakan coba lagi.");
+  showAlert("error", "Gagal mengirim data. Silakan coba lagi.");
   }
 }
 
@@ -270,12 +270,12 @@ async function handleFormGift(event) {
     const url = buildUrlGift(akun,pesan,nominal);
     const response = await fetch(url);
     const result = await response.json();
-	if (result.status){
-		showAlert("success", "Konfirmasi kado berhasil dikirim!");
+  if (result.status){
+    showAlert("success", "Konfirmasi kado berhasil dikirim!");
     setInterval(updateData, 5000); 
-	}else{
-		showAlert("error", result.error);
-	}
+  }else{
+    showAlert("error", result.error);
+  }
   } catch (err) {
     console.error("Gagal mengirim konfirmasi kado:", err);
     showAlert("error", "Gagal mengirim data. Silakan coba lagi.");
@@ -306,15 +306,15 @@ async function handleFormComment(event) {
     const response = await fetch(url);
     const result = await response.json();
 
-	if (result.status){
-		showAlert("success", "Pesan berhasil dikirim!");
+  if (result.status){
+    showAlert("success", "Pesan berhasil dikirim!");
     setInterval(updateData, 5000); 
-	}else{
-		showAlert("error", result.error);
-	}
+  }else{
+    showAlert("error", result.error);
+  }
   } catch (err) {
     console.error("Gagal mengirim Pesan:", err);
-	showAlert("error", "Gagal mengirim data. Silakan coba lagi.");
+  showAlert("error", "Gagal mengirim data. Silakan coba lagi.");
   }
 }
 
@@ -342,7 +342,6 @@ function buildUrlComment(komentar) {
 }
 
 async function buatKomentarDariData() {
-  const data = await getData('tamu');
   if (!data || !Array.isArray(data.tamu)) return;
 
   const komentarContainer = document.getElementById("comment-container");
@@ -351,12 +350,28 @@ async function buatKomentarDariData() {
     return;
   }
 
-  data.tamu.forEach((tamu, index) => {
-    // Hanya buat komentar jika ada isi pesan
-    if (tamu.pesan && tamu.pesan.trim() !== "") {
+  // Filter hanya tamu yang punya pesan dan urutkan dari index terbesar
+  const komentarList = data.tamu
+    .map((tamu, idx) => ({...tamu, _idx: idx}))
+    .filter(tamu => tamu.pesan && tamu.pesan.trim() !== "")
+    .reverse();
+  let loadedCount = 0;
+  const batchSize = 5;
+
+  // Clear container
+  komentarContainer.innerHTML = "";
+
+  // Hapus tombol jika ada
+  const existingBtn = document.getElementById("moreComment");
+  if (existingBtn) existingBtn.remove();
+
+  function renderBatch() {
+    const end = Math.min(loadedCount + batchSize, komentarList.length);
+    for (let i = loadedCount; i < end; i++) {
+      const tamu = komentarList[i];
       const item = document.createElement("div");
       item.className = "comment-item aos-init aos-animate";
-      item.id = `comment${tamu.id || index}`;
+      item.id = `comment${tamu.id || i}`;
       item.setAttribute("data-aos", "fade-up");
       item.setAttribute("data-aos-duration", "1200");
       item.style.opacity = "1";
@@ -378,7 +393,31 @@ async function buatKomentarDariData() {
 
       komentarContainer.appendChild(item);
     }
-  });
+    loadedCount = end;
+
+    // Tampilkan tombol jika masih ada sisa
+    if (loadedCount < komentarList.length) {
+      let btn = document.getElementById("moreComment");
+      if (!btn) {
+        btn = document.createElement("button");
+        btn.id = "moreComment";
+        btn.className = "comment-loadmore-btn";
+        btn.textContent = "Tampilkan lebih banyak";
+        komentarContainer.parentNode.appendChild(btn);
+        btn.addEventListener("click", function() {
+          renderBatch();
+          // Scroll ke bawah jika perlu
+          btn.scrollIntoView({behavior: "smooth", block: "end"});
+        });
+      }
+      btn.style.display = "block";
+    } else {
+      const btn = document.getElementById("moreComment");
+      if (btn) btn.style.display = "none";
+    }
+  }
+
+  renderBatch();
 }
 // Format ISO date ke "dd MMM yyyy, HH:mm"
 function formatTanggal(isoString) {
