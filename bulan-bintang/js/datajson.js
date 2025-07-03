@@ -7,7 +7,7 @@ function getParam(variabel) {
 
 // variabel global
 const namaTamu = getParam("to");
-const SCRIPT_BASE_URL = "https://script.google.com/macros/s/AKfycbyhaS-OswHKp5iR44zZjvPLvkj-Ob9Bn0iW_G1UAjKzsB3C5dWx4r8mqxqsj8WHvese1g/exec";
+const SCRIPT_BASE_URL = "https://script.google.com/macros/s/AKfycbwZ_spsPzVJ_VC4y_mgYjUvFHYAagYjMseFTODgZUG1QXQZtKdlAxiuaVVXQ4HjaMN8rw/exec";
 const DATABASE_NAME = "bulan-bintang"; 
 let data_update;
 let data;
