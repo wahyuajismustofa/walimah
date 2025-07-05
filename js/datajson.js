@@ -96,7 +96,7 @@ async function getData(namaFile) {
 
 async function updateData() {
   try {
-    const dataBaru = await getData('tamu');
+    const dataBaru = await getData('preview-tamu');
     if (dataBaru.updated && dataBaru.updated != data_update) {
       showAlert("info", "Perubahan data terdeteksi. Memuat ulang halaman...");
       window.location.reload();
