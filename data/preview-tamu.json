@@ -1,5 +1,5 @@
 {
-  "updated": "4/7/2025, 00.14.23",
+  "updated": "6/7/2025, 06.21.49",
   "tamu": [
     {
       "nama": "Arto Printing",
@@ -14,6 +14,13 @@
       "pesan": "Hi, Selamat ya.",
       "kehadiran": "Hadir",
       "acara": "Resepsi"
+    },
+    {
+      "nama": "Teman Spesial",
+      "waktu-pesan": "2025-07-05T23:21:00.000Z",
+      "pesan": "Cek",
+      "kehadiran": "",
+      "acara": ""
     }
   ]
 }
