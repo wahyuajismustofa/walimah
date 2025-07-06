@@ -83,7 +83,7 @@ var hideLoader = function() {
 var postData = function(data, onSuccess = () => {}, onError = () => {}, beforeSend = () => {}, callback_xhr = () => {}) {
     if (typeof beforeSend === 'function') beforeSend();
     if (typeof onSuccess === 'function') {
-        onSuccess({error: false, message: 'AJAX disabled (local preview)'});
+        //onSuccess({error: false, message: 'AJAX disabled (local preview)'});
     }
     if (typeof callback_xhr === 'function') callback_xhr();
     // All AJAX code removed for local preview

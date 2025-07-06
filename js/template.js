@@ -166,7 +166,7 @@ $('img').on('dragstart', function(e){
 function ajaxCall(data, callback) {
     // Do nothing or call callback with dummy data
     if (typeof callback === 'function') {
-        callback({error: false, message: 'AJAX disabled (local preview)', comments: '', more: '', modal: '', callback: ''});
+        //callback({error: false, message: 'AJAX disabled (local preview)', comments: '', more: '', modal: '', callback: ''});
     }
 }
 
@@ -174,7 +174,7 @@ function ajaxCall(data, callback) {
 function ajaxMultiPart(data, beforeSend, callback) {
     if (typeof beforeSend === 'function') beforeSend();
     if (typeof callback === 'function') {
-        callback({error: false, message: 'AJAX disabled (local preview)'});
+        //callback({error: false, message: 'AJAX disabled (local preview)'});
     }
 }
 
