@@ -585,9 +585,7 @@ section.top-cover .top-cover-inner .top-cover-highlight .preview-container .pict
     border-radius: 16px;
 }
 
-.cover-illustration .ornaments-wrapper {
 
-}
 
 .cover-illustration .cover-illustration-head {
     position: relative;
@@ -644,9 +642,7 @@ section.top-cover .top-cover-inner .top-cover-highlight .preview-container .pict
 .cover-details .bottom-text {
     color: var(--text-tertiary);
 }
-.cover-details .prime-title {
 
-}
 
 /* preview */
 .cover-preview-wrap {
@@ -747,8 +743,7 @@ section.love-story .story-inner {
   text-align: center;
   padding: 0 71px;
 }
-.story-head .story-title {
-}
+
 
 /* body */
 .story-body {
@@ -4531,7 +4526,6 @@ label > a:hover {
     padding: 8px;
     margin: 0px auto;
     border-radius: 12px;
-    :;
     line-height: 1.5;
     text-align: center;
     text-decoration: none;
@@ -5092,7 +5086,7 @@ label > a:hover {
     height: 60px;
     cursor: pointer;
 
-    background-image: url("https://ik.imagekit.io/mustofa/web/undangan-web/bulan-bintang/images/music.png?updatedAt=1750290173982");
+    background-image: url("https://ik.imagekit.io/mustofa/web/undangan-web/music.webp");
     background-repeat: no-repeat;
     background-position: center;
     background-size: 100% 100%;
