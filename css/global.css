@@ -3070,7 +3070,9 @@ section.person .person-envelope-open .cls-2 {
     }
 }
 
-/* CUSTOM CSS */
-.slick-slide.slick-current.slick-active{
-    width: 100%!important;
+/* =============================
+    CUSTOM CSS
+============================= */
+#cover-opening-slide{
+    width: 100% !important;
 }

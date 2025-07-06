@@ -98,7 +98,7 @@ async function updateData() {
   try {
     const dataBaru = await getData('preview-tamu');
     if (dataBaru.updated && dataBaru.updated != data_update) {
-      showAlert("info", "Perubahan data terdeteksi. Memuat ulang halaman...");
+      showAlert("Perubahan data terdeteksi. Memuat ulang halaman...", "info");
       window.location.reload();
     }
   } catch (err) {
@@ -249,7 +249,7 @@ function initRSVPFormHandler() {
 async function handleFormRSVP(event) {
   event.preventDefault();
   const kehadiran = getAttendanceStatus();
-  if (!kehadiran){ return showAlert("error", "Silakan pilih status kehadiran.")};
+  if (!kehadiran){ return showAlert("Silakan pilih status kehadiran.", "error")};
 
   const acara = getSelectedEvents();
 
@@ -259,14 +259,14 @@ async function handleFormRSVP(event) {
     const result = await response.json();
   
   if (result.status){
-    showAlert("success", "RSVP berhasil dikirim!");
+    showAlert("RSVP berhasil dikirim!", "success");
     setInterval(updateData, 5000); 
   }else{
-    showAlert("error", result.error);
+    showAlert(result.error, "error");
   }
   } catch (err) {
     console.error("Gagal mengirim RSVP:", err);
-  showAlert("error", "Gagal mengirim data. Silakan coba lagi.");
+  showAlert("Gagal mengirim data. Silakan coba lagi.", "error");
   }
 }
 
@@ -328,14 +328,14 @@ async function handleFormGift(event) {
     const response = await fetch(url);
     const result = await response.json();
   if (result.status){
-    showAlert("success", "Konfirmasi kado berhasil dikirim!");
+    showAlert("Konfirmasi kado berhasil dikirim!", "success");
     setInterval(updateData, 5000); 
   }else{
-    showAlert("error", result.error);
+    showAlert(result.error, "error");
   }
   } catch (err) {
     console.error("Gagal mengirim konfirmasi kado:", err);
-    showAlert("error", "Gagal mengirim data. Silakan coba lagi.");
+    showAlert("Gagal mengirim data. Silakan coba lagi.", "error");
   }
 }
 function buildUrlGift(akun,pesan,nominal) {
@@ -364,14 +364,14 @@ async function handleFormComment(event) {
     const result = await response.json();
 
   if (result.status){
-    showAlert("success", "Pesan berhasil dikirim!");
+    showAlert("Pesan berhasil dikirim!", "success");
     setInterval(updateData, 5000); 
   }else{
-    showAlert("error", result.error);
+    showAlert(result.error, "error");
   }
   } catch (err) {
     console.error("Gagal mengirim Pesan:", err);
-  showAlert("error", "Gagal mengirim data. Silakan coba lagi.");
+  showAlert("Gagal mengirim data. Silakan coba lagi.", "error");
   }
 }
 
@@ -496,13 +496,13 @@ function escapeHtml(text) {
   return div.innerHTML;
 }
 // alert
-function showAlert(jenis, pesan) {
+function showAlert(pesan, status) {
   const alertBox = document.getElementById("alert");
   const alertText = alertBox.querySelector(".alert-text");
   const alertClose = alertBox.querySelector(".alert-close");
 
   // Reset dulu
-  alertBox.className = `alert show ${jenis}`;
+  alertBox.className = `alert show ${status}`;
   alertText.textContent = pesan;
 
   // Hapus sebelumnya kalau ada
