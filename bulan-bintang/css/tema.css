@@ -1,27 +1,4 @@
-/* bulan-bintang */
-body {
-  --background-primary: #f3e4d8 !important;
-  --background-primary-rgb: 243, 228, 216 !important;
-  --background-secondary: #e9ddbb !important;
-  --background-secondary-rgb: 233, 221, 187 !important;
-  --background-tertiary: #fffaeb !important;
-  --background-tertiary-rgb: 255, 250, 235 !important;
-  --text-primary: #613947 !important;
-  --text-primary-rgb: 97, 57, 71 !important;
-  --text-secondary: #57411c !important;
-  --text-secondary-rgb: 87, 65, 28 !important;
-  --text-tertiary: #57411c !important;
-  --text-tertiary-rgb: 87, 65, 28 !important;
-  --button-text-primary: #ece8d8 !important;
-  --button-text-primary-rgb: 236, 232, 216 !important;
-  --button-background-primary: #613947 !important;
-  --button-background-primary-rgb: 97, 57, 71 !important;
-  --button-text-secondary: #ece8d8 !important;
-  --button-text-secondary-rgb: 236, 232, 216 !important;
-  --button-background-secondary: #d0a25e !important;
-  --button-background-secondary-rgb: 208, 162, 94 !important;
-}
-		
+
 body.bulan-bintang {
     /* Heading Family */
     --heading-family: "Hurricane", cursive;
@@ -585,7 +562,9 @@ section.top-cover .top-cover-inner .top-cover-highlight .preview-container .pict
     border-radius: 16px;
 }
 
+.cover-illustration .ornaments-wrapper {
 
+}
 
 .cover-illustration .cover-illustration-head {
     position: relative;
@@ -642,7 +621,9 @@ section.top-cover .top-cover-inner .top-cover-highlight .preview-container .pict
 .cover-details .bottom-text {
     color: var(--text-tertiary);
 }
+.cover-details .prime-title {
 
+}
 
 /* preview */
 .cover-preview-wrap {
@@ -743,7 +724,8 @@ section.love-story .story-inner {
   text-align: center;
   padding: 0 71px;
 }
-
+.story-head .story-title {
+}
 
 /* body */
 .story-body {

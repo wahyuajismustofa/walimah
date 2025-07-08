@@ -2082,6 +2082,18 @@ $(function(){
 // SHOW GALLERY
 function showGalleries() {
     $('.lightgallery').each(function(i, gallery) {
+        // Always create a new instance of lightGallery, remove any previous lg-uid
+        if (gallery.hasAttribute('lg-uid')) {
+            gallery.removeAttribute('lg-uid');
+        }
+        if (typeof window.lgData === 'object') {
+            // Remove any orphaned lgData for this element
+            for (const key in window.lgData) {
+                if (window.lgData[key] && window.lgData[key].el === gallery) {
+                    delete window.lgData[key];
+                }
+            }
+        }
         lightGallery(gallery, {
             download: false,
         });
