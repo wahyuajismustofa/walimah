@@ -96,15 +96,31 @@ async function getData(namaFile) {
 
 async function updateData() {
   try {
-    const dataBaru = await getData('preview-tamu');
-    if (dataBaru.updated && dataBaru.updated != data_update) {
-      showAlert("Perubahan data terdeteksi. Memuat ulang halaman...", "info");
-      window.location.reload();
+    const isLocalhost = location.hostname === "localhost";
+    if (isLocalhost) {
+      console.log("[updateData] Lewatkan update karena sedang berjalan di localhost.");
+      return;
     }
+
+    // Pengulangan ambil data terus-menerus
+    const polling = async () => {
+      const dataBaru = await getData('preview-tamu');
+
+      if (dataBaru.updated && dataBaru.updated != data_update) {
+        showAlert("Perubahan data terdeteksi. Memuat ulang halaman...", "info");
+        window.location.reload();
+      } else {
+        setTimeout(polling, 5000);
+      }
+    };
+
+    polling(); // Mulai polling
   } catch (err) {
     console.error("Gagal memeriksa pembaruan data:", err.message);
   }
 }
+
+
 
 
 function gantiIsiClass(className, nilaiBaru) {
@@ -129,7 +145,7 @@ function gantiIsiClass(className, nilaiBaru) {
 // rsvp ---------------------------------------
 function buatFormRSVP() {
   return `
-    <form action="" method="POST" id="RSVPForm">
+    <form  method="POST" id="RSVPForm">
       <!-- Status -->
       <div class="rsvp-status-wrap">
         <div class="rsvp-status-head" data-aos="fade-up" data-aos-duration="1200">
@@ -260,7 +276,7 @@ async function handleFormRSVP(event) {
   
   if (result.status){
     showAlert("RSVP berhasil dikirim!", "success");
-    setInterval(updateData, 5000); 
+    updateData(); 
   }else{
     showAlert(result.error, "error");
   }
@@ -318,9 +334,9 @@ function initGiftFormHandler() {
 async function handleFormGift(event) {
   event.preventDefault();
   const form = document.getElementById("weddingGiftForm");
-  const akun = encodeCustom(form.querySelector('[name="nama-akun"]').value);
-  const pesan = encodeCustom(form.querySelector('[name="pesan"]').value);
-  const nominal = encodeCustom(form.querySelector('[name="nominal"]').value);
+  const akun = encodeCustom(form.querySelector('[name="account_name"]').value);
+  const pesan = encodeCustom(form.querySelector('[name="message"]').value);
+  const nominal = encodeCustom(form.querySelector('[name="amount"]').value);
   if (!akun || !pesan || !nominal) return alert("Silakan lengkapi data kado");
 
   try {
@@ -329,7 +345,7 @@ async function handleFormGift(event) {
     const result = await response.json();
   if (result.status){
     showAlert("Konfirmasi kado berhasil dikirim!", "success");
-    setInterval(updateData, 5000); 
+    updateData(); 
   }else{
     showAlert(result.error, "error");
   }
@@ -365,7 +381,7 @@ async function handleFormComment(event) {
 
   if (result.status){
     showAlert("Pesan berhasil dikirim!", "success");
-    setInterval(updateData, 5000); 
+    updateData(); 
   }else{
     showAlert(result.error, "error");
   }

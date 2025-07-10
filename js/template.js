@@ -483,24 +483,6 @@ $(document).on('keyup keydown change', '[name="inserted_nominal"]', function(e){
     };
 });
 
-// ---------- RSVP Form [ON SUBMIT] --------------------------------------------------
-$(document).on('submit', '#rsvp-form', function(e){
-    e.preventDefault();
-
-    // Data
-    var data = $(this).serialize();
-
-    // Ajax Call
-    ajaxCall(data, function(result){
-        $('.rsvp-inner').find('.rsvp-form').fadeOut();
-        $('.rsvp-inner').find('.rsvp-confirm').fadeIn();
-
-        showAlert(result.message, 'success');
-        window.location.reload();
-    });
-
-    return false;
-});
 
 
 
@@ -580,22 +562,7 @@ $(document).on('click', '.gift-back', function(e){
     $('.gift-details').fadeIn();
 });
 
-// ---------- Gift Form [ON SUBMIT] --------------------------------------------------
-$(document).on('submit', '#weddingGiftForm', function(e){
-    var data = new FormData(this);
-    ajaxMultiPart(data, function(){
-        $('.gift-next').prop('disabled', true);
-        $('.gift-submit').prop('disabled', true);
-        $('.gift-submit').html('<i class="fas fa-spinner fa-spin"></i>');
-    }, function(result){
-        $(this).trigger('reset');
-        showAlert(result.message, 'success');
-        setTimeout(function(){
-            window.location.reload(true);
-        }, 1000);
-    });
-    return false;
-});
+
 
 
 
@@ -660,48 +627,6 @@ var weeding_gift_prev = function(e) {
 }
 
 $(document).on('click', '.wedding-gift__prev', weeding_gift_prev);        
-
-
-// Wedding Gift Form
-var wedding_gift_form = function(e) {
-    e.preventDefault();
-
-    var form = this;
-    var data = new FormData(form);
-
-    var submitButton = $(form).find('button.submit');
-    var submitText = $(submitButton).html();
-
-    var onSuccess = function(res) {
-
-        if (res.wedding_gift_message) {
-            $('.wedding-weddingGiftForm').html(res.wedding_gift_message);
-        }
-
-        if (!res.wedding_gift_message) {
-            setTimeout(() => { window.location.reload(); }, 1000);
-        }
-
-        afterSend();
-    }
-
-    var onError = function(res=null) { afterSend(); }
-
-    var afterSend = function() {
-        $(form).find('input, select, textarea, button').prop('disabled', false);
-        $(submitButton).html(submitText);
-    }
-
-    var beforeSend = function() {
-        $(form).find('input, select, textarea, button').prop('disabled', true);
-        $(submitButton).html('Sending <i class="fas fa-spinner fa-spin"></i>');
-    }
-
-    postData(data, onSuccess, onError, beforeSend);
-}
-
-$(document).on('submit', 'form#weddingGiftForm', wedding_gift_form);
-
 
 
 // Init Wedding Gift
@@ -901,23 +826,6 @@ var allComments = (function comment(){
     return comment;
 }());
 
-// ---------- Comment Form [ON SUBMIT] --------------------------------------------------
-$(document).on('submit', '#weddingWishForm', function(e){
-    e.preventDefault();
-    var form = $(this);
-    var data = $(this).serialize();
-    var comment = $(this).find('[name="comment"]');
-    if (comment.val() == '') {
-        comment.focus();
-    } else {
-        ajaxCall(data, function(result){
-            $(form).trigger('reset');
-            showAlert(result.message, 'success');
-            allComments();
-        });
-    }
-    return false;
-});
 
 // ---------- More Comment --------------------------------------------------
 $(document).on('click', '.more-comment', function(e){
@@ -939,50 +847,6 @@ $(document).on('click', '.more-comment', function(e){
         }
     });
 });
-
-
-
-// Post Comment
-var post_comment = function(e) {
-    e.preventDefault();
-
-    var form = this;
-    var data = new FormData(form);
-
-    var submitButton = $(form).find('button.submit');
-    var submitText = $(submitButton).html();
-
-    if( $(form).find('input[name="name"]').val() == '' ) {
-        return $(form).find('input[name="name"]').focus();
-    }
-
-    if( $(form).find('textarea[name="comment"]').val() == '' ) {
-        return $(form).find('textarea[name="comment"]').focus();
-    }
-
-    var onSuccess = function() {
-        load_comment();
-        afterSend();
-        if (typeof lysha_get_all_comments === 'function') lysha_get_all_comments();
-    }
-
-    var onError = function(res=null) { afterSend() }
-
-    var afterSend = function() {        
-        $(form).find('textarea[name="comment"]').val('');
-        $(form).find('input, select, textarea, button').prop('disabled', false);
-        $(submitButton).html(submitText);
-    }
-
-    var beforeSend = function() {
-        $(form).find('input, select, textarea, button').prop('disabled', true);
-        $(submitButton).html('Mengirim <i class="fas fa-spinner fa-spin"></i>');
-    }
-
-    postData(data, onSuccess, onError, beforeSend);
-}
-
-$(document).on('submit', 'form#weddingWishForm', post_comment);
 
 
 // Load Comment
@@ -2082,18 +1946,6 @@ $(function(){
 // SHOW GALLERY
 function showGalleries() {
     $('.lightgallery').each(function(i, gallery) {
-        // Always create a new instance of lightGallery, remove any previous lg-uid
-        if (gallery.hasAttribute('lg-uid')) {
-            gallery.removeAttribute('lg-uid');
-        }
-        if (typeof window.lgData === 'object') {
-            // Remove any orphaned lgData for this element
-            for (const key in window.lgData) {
-                if (window.lgData[key] && window.lgData[key].el === gallery) {
-                    delete window.lgData[key];
-                }
-            }
-        }
         lightGallery(gallery, {
             download: false,
         });
@@ -2219,47 +2071,6 @@ var fn_rsvp_change = function(e) {
 $(document).on('click', '#changeRSVP', fn_rsvp_change);
 
 
-// Function RSVP Form
-var fn_rsvp_form = function(e) {
-    e.preventDefault();
-
-    var data = new FormData(this);
-    var form = this;
-
-    var submitButton = $(form).find('button.submit');
-    var submitText = $(submitButton).html();
-
-    var onSuccess = function(res) {
-        // content
-        if (res.rsvp_content && res.rsvp_content != '') {
-            // append content to body
-            $('.rsvp-body').html(res.rsvp_content);
-
-            // URLify
-            $('.rsvp-body').find('p').each(function(i, el) {
-                el.innerHTML = urlify(el.innerHTML);
-            });
-        }
-
-        afterSend(); 
-    }
-
-    var onError = function(res=null) { afterSend(); }
-
-    var afterSend = function() {
-        $(form).find('input, button').prop('disabled', false);
-        $(submitButton).html( submitText );
-    }
-
-    var beforeSend = function() {
-        $(form).find('input, button').prop('disabled', true);
-        $(submitButton).html( submitText + " <i class='fas fa-spinner fa-spin'></i>" );
-    }
-
-    postData(data, onSuccess, onError, beforeSend);
-}
-
-$(document).on('submit', 'form#RSVPForm', fn_rsvp_form);
 
 
 // Function RSVP Amount Toggle
@@ -2572,55 +2383,7 @@ var func_kado_init = function () {
         });
     }
     
-    function sendKado() {
-        $(document).off('submit', 'form#frmBuyGift'); // Unbind previous event handler
-        $(document).on('submit', 'form#frmBuyGift', function(e){
-            e.preventDefault();
-            
-            var data = new FormData(this);
-            var $this = $(this);
-            var $submitBtn = $this.find('button.kado-send-btn');
-            var submitText = $submitBtn.html();
-            
-            var onSuccess = function(res) {
-                setTimeout(afterSend, 500);
-                if (res.message) showAlert({ type: 'success', caption: res.message });
-
-                if (res.soldOut_id) {
-                    $(`.hadiah-card[data-id="${res.soldOut_id}"]`).addClass('sold-out');
-                    $(`.hadiah-card-wrap[data-id="${res.soldOut_id}"]`).addClass('sold-out');
-                }
-
-                closeModal();
-            }
-            
-            var onError = function(res=null) {
-                if (res && res.message) showAlert({ type: 'danger', caption: res.message });
-                
-                if (res.soldOut_id) {
-                    $(`.hadiah-card[data-id="${res.soldOut_id}"]`).addClass('sold-out');
-                    $(`.hadiah-card-wrap[data-id="${res.soldOut_id}"]`).addClass('sold-out');
-                    closeModal();
-                }
-
-                setTimeout(afterSend, 500);
-            }
-            
-            var beforeSend = function() {
-                $this.find('input, textarea, button').prop('disabled', true);
-                $submitBtn.html(submitText + ' <i class="fas fa-spinner fa-spin"></i>');
-            }
-            
-            var afterSend = function() {
-                $this.find('input, textarea, button').prop('disabled', false);
-                $submitBtn.html(submitText);
-            }
-            
-            postData(data, onSuccess, onError, beforeSend);
-            
-            return false;
-        });
-    }
+    
     
     function createFormData(postValue, modalValue) {
         var data = new FormData();
