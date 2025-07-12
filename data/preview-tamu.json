@@ -1,5 +1,5 @@
 {
-  "updated": "10/7/2025, 08.55.37",
+  "updated": "12/7/2025, 07.02.14",
   "tamu": [
     {
       "nama": "Arto Printing",
@@ -21,6 +21,13 @@
       "pesan": "Cuma testing doang...",
       "kehadiran": "Hadir",
       "acara": "Resepsi"
+    },
+    {
+      "nama": "Testing",
+      "waktu-pesan": "",
+      "pesan": "",
+      "kehadiran": "",
+      "acara": ""
     }
   ]
 }
