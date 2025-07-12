@@ -1,5 +1,5 @@
 {
-  "updated": "12/7/2025, 07.18.16",
+  "updated": "12/7/2025, 07.19.00",
   "tamu": [
     {
       "nama": "Arto Printing",
@@ -7,8 +7,7 @@
       "pesan": "Yeee",
       "kehadiran": "Hadir",
       "acara": "Resepsi",
-      "rsvp_status": "",
-      "selected_event[]": ""
+      "acara[]": ""
     },
     {
       "nama": "Wahyu Ajis Mustofa",
@@ -16,8 +15,7 @@
       "pesan": "Hi, Selamat ya.",
       "kehadiran": "Hadir",
       "acara": "Resepsi",
-      "rsvp_status": "",
-      "selected_event[]": ""
+      "acara[]": ""
     },
     {
       "nama": "Teman Spesial",
@@ -25,8 +23,7 @@
       "pesan": "Cuma testing doang...",
       "kehadiran": "Hadir",
       "acara": "Resepsi",
-      "rsvp_status": "",
-      "selected_event[]": ""
+      "acara[]": ""
     },
     {
       "nama": "Testing",
@@ -34,8 +31,7 @@
       "pesan": "",
       "kehadiran": "Tidak Hadir",
       "acara": "",
-      "rsvp_status": "Hadir",
-      "selected_event[]": "Resepsi"
+      "acara[]": ""
     }
   ]
 }
