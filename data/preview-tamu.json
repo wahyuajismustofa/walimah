@@ -1,5 +1,5 @@
 {
-  "updated": "12/7/2025, 07.06.39",
+  "updated": "12/7/2025, 07.18.16",
   "tamu": [
     {
       "nama": "Arto Printing",
@@ -32,7 +32,7 @@
       "nama": "Testing",
       "waktu-pesan": "",
       "pesan": "",
-      "kehadiran": "",
+      "kehadiran": "Tidak Hadir",
       "acara": "",
       "rsvp_status": "Hadir",
       "selected_event[]": "Resepsi"
