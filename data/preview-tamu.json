@@ -1,5 +1,5 @@
 {
-  "updated": "13/7/2025, 09.06.46",
+  "updated": "13/7/2025, 09.43.26",
   "tamu": [
     {
       "nama": "Arto Printing",
@@ -41,6 +41,13 @@
       "waktu-pesan": "",
       "pesan": "Test",
       "kehadiran": "Tidak Hadir",
+      "acara": ""
+    },
+    {
+      "nama": "Wahyu Ajis",
+      "waktu-pesan": "",
+      "pesan": "Test",
+      "kehadiran": "Hadir",
       "acara": ""
     }
   ]
